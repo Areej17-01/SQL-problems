@@ -1,0 +1,8 @@
+# Write your MySQL query statement below
+SELECT E.employee_name as Employee
+FROM EMPLOYEE 
+RIGHT JOIN (SELECT managerid as manager,salary as salaryofemployee,name as employee_name
+FROM Employee
+WHERE managerId is not null) E
+ON E.manager=EMPLOYEE.id
+WHERE E.salaryofemployee >EMPLOYEE.salary
