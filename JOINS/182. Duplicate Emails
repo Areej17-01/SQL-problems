@@ -1,0 +1,10 @@
+# Write your MySQL query statement below
+select DISTINCT(Person.email) from
+ Person 
+inner join 
+(SELECT Email Email_alt,count(Email) count_email from
+Person  
+group by Email 
+) alt
+on person.email=alt.Email_alt   
+where alt.count_email>1
