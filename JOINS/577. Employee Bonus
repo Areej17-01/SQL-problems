@@ -1,0 +1,6 @@
+# Write your MySQL query statement below
+select Employee.name,B.bonus
+from Employee
+left join Bonus as B
+ON B.empId=Employee.empId
+where B.bonus <1000 or B.bonus is null
