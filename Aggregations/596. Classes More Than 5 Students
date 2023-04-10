@@ -1,0 +1,6 @@
+select class 
+from(
+SELECT class,count(class) c_class
+from Courses 
+group by class) q1
+where c_class >=5
