@@ -1,0 +1,14 @@
+# Write your MySQL query statement below
+SELECT name from SalesPerson where 
+name NOT in
+(SELECT ID.name 
+FROM Company 
+right join (SELECT S.name ,O.sales_id ,O.com_id 
+from SalesPerson S
+left Join Orders O
+ON S.sales_id =O.sales_id ) ID
+ON ID.com_id=Company.com_id 
+WHERE Company.name ="RED")
+
+
+
