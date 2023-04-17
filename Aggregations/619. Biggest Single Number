@@ -1,0 +1,5 @@
+SELECT MAX(num) as num from
+(select num ,count(num) as cnum 
+from MyNumbers 
+group by num) sdb
+where cnum =1;
