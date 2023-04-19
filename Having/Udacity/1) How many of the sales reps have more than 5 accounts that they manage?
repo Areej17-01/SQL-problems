@@ -1,0 +1,6 @@
+SELECT sr.id, sr.name
+FROM sales_reps sr
+JOIN accounts a
+ON sr.id = a.sales_rep_id
+GROUP BY sr.id, sr.name
+HAVING COUNT(a.id) > 5
