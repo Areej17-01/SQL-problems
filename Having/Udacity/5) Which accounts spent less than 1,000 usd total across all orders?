@@ -1,0 +1,11 @@
+
+SELECT accounts.id,sum(orders.total_amt_usd ) 
+FROM accounts
+JOIN orders
+ON orders.account_id=accounts.id
+GROUP BY accounts.id
+having sum(orders.total_amt_usd ) <1000
+
+
+
+
