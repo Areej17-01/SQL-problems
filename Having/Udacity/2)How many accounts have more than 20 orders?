@@ -1,0 +1,10 @@
+
+SELECT accounts.id,count(accounts.id) as cname
+FROM accounts
+join orders
+ON orders.account_id=accounts.id
+GROUP BY accounts.id
+having count(accounts.id)>20
+
+
+
