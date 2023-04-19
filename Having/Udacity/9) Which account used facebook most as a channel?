@@ -1,0 +1,15 @@
+
+SELECT accounts.id,count(web_events.channel )
+FROM accounts
+JOIN web_events
+ON web_events.account_id=accounts.id
+where web_events.channel= 'facebook'
+GROUP by accounts.id 
+Order by 2 desc
+limit 1
+
+
+
+
+
+
