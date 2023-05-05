@@ -1,0 +1,24 @@
+/*In which month of which year did Walmart spend the most on gloss paper in terms of dollars? 
+*/
+SELECT DATE_PART('MONTH',ORDERS.occurred_at) year_REV,
+DATE_PART('YEAR',ORDERS.occurred_at) MONTH_REV,
+SUM(gloss_amt_usd)
+FROM orders 
+JOIN accounts
+ON ACCOUNTS.ID=ORDERS.ACCOUNT_ID
+WHERE ACCOUNTS.NAME='Walmart'                                         
+GROUP BY 1,2
+ORDER BY 3 DESC 
+LIMIT 1
+
+
+#SOLUTION 2
+
+SELECT DATE_TRUNC('month', o.occurred_at) ord_date, SUM(o.gloss_amt_usd) tot_spent
+FROM orders o 
+JOIN accounts a
+ON a.id = o.account_id
+WHERE a.name = 'Walmart'
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 1;
