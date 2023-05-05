@@ -1,0 +1,6 @@
+/*Which year did Parch & Posey have the greatest sales in terms of total number of orders? Are all years evenly represented by the dataset?*/
+
+SELECT DATE_PART('year',occurred_at) year_REV,COUNT(DATE_PART('year',occurred_at))
+FROM ORDERS 
+GROUP BY DATE_PART('year',occurred_at)
+ORDER BY 2 DESC
