@@ -1,0 +1,6 @@
+/*Find the sales in terms of total dollars for all orders in each year, ordered from greatest to least. Do you notice any trends in the yearly sales totals?*/
+
+SELECT DATE_PART('year',occurRed_at) year_REV,SUM(total_amt_usd)
+FROM ORDERS 
+GROUP BY DATE_PART('year',occurRed_at)
+ORDER BY 2 DESC
