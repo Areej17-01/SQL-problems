@@ -1,0 +1,13 @@
+/*We would now like to perform a similar calculation to the first, but we want to obtain the total amount spent by customers only in 2016 and 2017. Keep the same levels as in the previous question. Order with the top spending customers listed first.
+*/
+SELECT ACCOUNT_ID,ACCOUNTS.NAME,
+SUM(TOTAL_AMT_USD) AS TOTAL_AMT,
+CASE WHEN SUM(TOTAL_AMT_USD)>=200000 THEN 'TOP LEVEL'
+			WHEN SUM(TOTAL_AMT_USD)>100000 AND SUM(TOTAL_AMT_USD)				<200000 THEN 'SECOND LEVEL'
+            WHEN SUM(TOTAL_AMT_USD)<100000 THEN 'LOWEST LEVEL' END AS CATEGORY
+FROM ORDERS
+JOIN ACCOUNTS
+ON ACCOUNTS.ID=ORDERS.account_id
+WHERE DATE_PART('YEAR',ORDERS.OCCURRED_AT) BETWEEN 2016 AND 2017
+GROUP BY 1,2
+ORDER BY 3 DESC
