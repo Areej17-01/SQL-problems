@@ -1,0 +1,4 @@
+--What was the month-year combo for the first order placed?
+
+SELECT * FROM ORDERS WHERE 
+DATE_TRUNC('MONTH',occurred_at)=(SELECT DATE_TRUNC('MONTH',MIN(occurred_at)) FROM orders)
