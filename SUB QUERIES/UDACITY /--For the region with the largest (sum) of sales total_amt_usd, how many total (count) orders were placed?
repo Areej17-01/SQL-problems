@@ -1,0 +1,28 @@
+
+--For the region with the largest (sum) of sales total_amt_usd, how many total (count) orders were placed?
+SELECT R.NAME AS REGION ,COUNT(*) FROM 
+sales_reps S
+JOIN region R ON R.id=S.region_id
+JOIN Accounts A ON A.sales_rep_ID=S.ID
+JOIN ORDERS O ON A.ID=O.account_id
+GROUP BY 1 
+HAVING SUM(O.total_amt_usd)=
+			(SELECT MAX(SUM) FROM
+(SELECT R.NAME AS REGION ,SUM(O.total_amt_usd) FROM 
+sales_reps S
+JOIN region R ON R.id=S.region_id
+JOIN Accounts A ON A.sales_rep_ID=S.ID
+JOIN ORDERS O ON A.ID=O.account_id
+GROUP BY  1  )F1)
+
+OR
+
+
+SELECT R.NAME AS REGION ,SUM(O.total_amt_usd),COUNT(*) FROM 
+sales_reps S
+JOIN region R ON R.id=S.region_id
+JOIN Accounts A ON A.sales_rep_ID=S.ID
+JOIN ORDERS O ON A.ID=O.account_id
+GROUP BY  1 
+ORDER BY 3 DESC 
+LIMIT 1
