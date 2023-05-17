@@ -1,0 +1,13 @@
+--For the customer that spent the most (in total over their lifetime as a customer) total_amt_usd, how many web_events did they have for each channel?
+
+select a.name,w.channel,count(*) from 
+accounts a 
+join web_events w
+on w.account_id=a.id 
+where
+a.id=(select id from(select a.id,sum(o.total_amt_usd) from accounts a join orders o on o.account_id=a.id
+group by 1
+order by 2 desc
+limit 1)t1)
+group by 1,2
+order by 3 desc
