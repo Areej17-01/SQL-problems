@@ -1,0 +1,11 @@
+select round(sum(tiv_2016),2) as tiv_2016 from
+(select tiv_2016,lat,lon  from insurance 
+where tiv_2015 in (select tiv_2015 from insurance 
+group by tiv_2015 
+having count(*)>1)) k1 
+right join 
+(select lat,lon from insurance 
+group by  lat , lon 
+having count(*)=1) k2
+on k1.lat=k2.lat and k1.lon=k2.lon
+ 
