@@ -1,0 +1,7 @@
+--What is the lifetime average amount spent in terms of total_amt_usd for the top 10 total spending accounts?
+select round(avg(sum),2) from (
+select sum(o.total_amt_usd) ,o.account_id  from 
+orders o
+group by 2
+order by 1 desc
+limit 10)sub
